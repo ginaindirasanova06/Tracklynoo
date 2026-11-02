@@ -1,0 +1,19 @@
+CRITICAL - 2026-10-22 14:41:57 --> ErrorException: unlink(C:\xampppp\htdocs\Trackly\writable\debugbar/debugbar_1792652264.349829.json): Permission denied
+[Method: GET, Route: /]
+in SYSTEMPATH\Debug\Toolbar\Collectors\History.php on line 82.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(C:\\xampppp\\htdocs\\Trackly\\writable\\debugbar/debugbar_1792652264.349829.json): Permission denied', 'C:\\xampppp\\htdocs\\Trackly\\system\\Debug\\Toolbar\\Collectors\\History.php', 82)
+ 2 SYSTEMPATH\Debug\Toolbar\Collectors\History.php(82): unlink('C:\\xampppp\\htdocs\\Trackly\\writable\\debugbar/debugbar_1792652264.349829.json')
+ 3 SYSTEMPATH\Debug\Toolbar.php(517): CodeIgniter\Debug\Toolbar\Collectors\History->setFiles('1792654915.032086', 20)
+ 4 SYSTEMPATH\Debug\Toolbar.php(494): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 5 APPPATH\Config\Events.php(49): CodeIgniter\Debug\Toolbar->respond()
+ 6 SYSTEMPATH\Events\Events.php(152): CodeIgniter\Events\Events::Config\{closure}()
+ 7 SYSTEMPATH\CodeIgniter.php(348): CodeIgniter\Events\Events::trigger('pre_system')
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-10-22 10:31:36 --> CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\Database.php on line 186.
+ 1 SYSTEMPATH\Database\Database.php(59): CodeIgniter\Database\Database->checkDbExtension('SQLite3')
+ 2 SYSTEMPATH\Database\Config.php(82): CodeIgniter\Database\Database->load([...], 'tests')
+ 3 C:\Users\hp\.gemini\antigravity-ide\brain\e850b4e2-f334-4b47-89b3-f544b2c5939d\scratch\check_nabila.php(3): CodeIgniter\Database\Config::connect()

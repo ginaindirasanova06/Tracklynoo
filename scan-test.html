@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tes Scan QR</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 760px;
+            margin: 20px auto;
+            padding: 0 12px
+        }
+
+        video,
+        canvas {
+            width: 100%;
+            max-width: 640px;
+            background: #000;
+            border-radius: 8px
+        }
+
+        #hasil {
+            font-size: 20px;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 8px;
+            background: #eee;
+            margin: 10px 0
+        }
+
+        #hasil.ok {
+            background: #d1fae5;
+            color: #065f46
+        }
+
+        #log {
+            font: 13px monospace;
+            background: #111;
+            color: #9f9;
+            padding: 10px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow: auto
+        }
+
+        button,
+        input {
+            margin: 4px 4px 4px 0;
+            padding: 8px 12px
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Tes Scan QR (halaman terpisah)</h2>
+    <div id="lib"></div>
+    <div id="hasil">Belum ada hasil</div>
+
+    <video id="v" playsinline muted></video>
+    <div>
+        <button id="btnCam">Nyalakan Kamera</button>
+        <input type="file" id="f" accept="image/*">
+    </div>
+    <p>Gambar yang sedang di-decode (debug):</p>
+    <canvas id="c"></canvas>
+    <div id="log"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script>
+        const $ = id => document.getElementById(id);
+        const log = m => { $('log').textContent = m + '\n' + $('log').textContent; console.log(m); };
+        const cv = $('c'), ctx = cv.getContext('2d', { willReadFrequently: true });
+
+        $('lib').innerHTML = (typeof jsQR === 'function')
+            ? '✅ Library jsQR termuat'
+            : '❌ Library jsQR GAGAL dimuat (cek koneksi internet / CDN diblokir)';
+        log('BarcodeDetector tersedia: ' + ('BarcodeDetector' in window));
+
+        function tryDecode(w, h, label) {
+            const img = ctx.getImageData(0, 0, w, h);
+            let r = jsQR(img.data, w, h, { inversionAttempts: 'attemptBoth' });
+            if (r) return { r, label };
+            // coba flip horizontal
+            const tmp = document.createElement('canvas'); tmp.width = w; tmp.height = h;
+            const t = tmp.getContext('2d'); t.translate(w, 0); t.scale(-1, 1); t.drawImage(cv, 0, 0);
+            const img2 = t.getImageData(0, 0, w, h);
+            r = jsQR(img2.data, w, h, { inversionAttempts: 'attemptBoth' });
+            return r ? { r, label: label + ' (flip)' } : null;
+        }
+
+        function decodeSource(src, sw, sh) {
+            const scales = [1, 0.5, 0.75, 1.5];
+            for (const s of scales) {
+                const w = Math.round(sw * s), h = Math.round(sh * s);
+                if (w < 100 || w > 2200) continue;
+                cv.width = w; cv.height = h;
+                ctx.drawImage(src, 0, 0, w, h);
+                const res = tryDecode(w, h, 'skala ' + s);
+                if (res) return res;
+            }
+            return null;
+        }
+
+        function tampil(res) {
+            const el = $('hasil');
+            if (res) {
+                el.className = 'ok'; el.textContent = '✅ TERBACA: ' + res.r.data;
+                log('Berhasil (' + res.label + '): ' + res.r.data);
+            }
+            else { el.className = ''; el.textContent = '❌ Belum terbaca'; }
+        }
+
+        // ---- Upload file ----
+        $('f').addEventListener('change', e => {
+            const file = e.target.files[0]; if (!file) return;
+            const im = new Image();
+            im.onload = () => {
+                let w = im.naturalWidth, h = im.naturalHeight;
+                log('Gambar upload: ' + w + 'x' + h);
+                const m = 1200; if (w > m) { h = Math.round(h * m / w); w = m; }
+                tampil(decodeSource(im, w, h));
+            };
+            im.src = URL.createObjectURL(file);
+        });
+
+        // ---- Kamera ----
+        let stream, loopOn = false;
+        $('btnCam').onclick = async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 } } });
+                const v = $('v'); v.srcObject = stream; await v.play();
+                log('Kamera: ' + v.videoWidth + 'x' + v.videoHeight);
+                loopOn = true; setInterval(() => {
+                    if (!loopOn || !v.videoWidth) return;
+                    const res = decodeSource(v, v.videoWidth, v.videoHeight);
+                    if (res) { tampil(res); }
+                }, 300);
+            } catch (err) { log('Error kamera: ' + err.message); }
+        };
+    </script>
+</body>
+
+</html>

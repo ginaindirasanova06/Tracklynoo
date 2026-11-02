@@ -1,0 +1,222 @@
+CRITICAL - 2026-10-23 11:14:36 --> ErrorException: file_get_contents(C:\xampppp\htdocs\Trackly\writable\debugbar/debugbar_1792658766.935671.json): Failed to open stream: Permission denied
+[Method: GET, Route: /]
+in SYSTEMPATH\Debug\Toolbar\Collectors\History.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(C:\\xampppp\\htdocs\\Trackly\\writable\\debugbar/debugbar_1792658766.935671.json): Failed to open stream: Permission denied', 'C:\\xampppp\\htdocs\\Trackly\\system\\Debug\\Toolbar\\Collectors\\History.php', 88)
+ 2 SYSTEMPATH\Debug\Toolbar\Collectors\History.php(88): file_get_contents('C:\\xampppp\\htdocs\\Trackly\\writable\\debugbar/debugbar_1792658766.935671.json')
+ 3 SYSTEMPATH\Debug\Toolbar.php(517): CodeIgniter\Debug\Toolbar\Collectors\History->setFiles('1792728874.618169', 20)
+ 4 SYSTEMPATH\Debug\Toolbar.php(494): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 5 APPPATH\Config\Events.php(49): CodeIgniter\Debug\Toolbar->respond()
+ 6 SYSTEMPATH\Events\Events.php(152): CodeIgniter\Events\Events::Config\{closure}()
+ 7 SYSTEMPATH\CodeIgniter.php(348): CodeIgniter\Events\Events::trigger('pre_system')
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-10-23 11:50:13 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'trackly_db', 3306, '', 0)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampppp\htdocs\Trackly\system\Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampppp\htdocs\Trackly\system\BaseModel.php(615): CodeIgniter\Model->doFind(true, 19)
+#6 C:\xampppp\htdocs\Trackly\app\Controllers\BerkasController.php(270): CodeIgniter\BaseModel->find(19)
+#7 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\BerkasController->printQr(19)
+#8 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BerkasController))
+#9 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampppp\htdocs\Trackly\system\Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampppp\htdocs\Trackly\system\BaseModel.php(615): CodeIgniter\Model->doFind(true, 19)
+#5 C:\xampppp\htdocs\Trackly\app\Controllers\BerkasController.php(270): CodeIgniter\BaseModel->find(19)
+#6 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\BerkasController->printQr(19)
+#7 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BerkasController))
+#8 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-10-23 11:50:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: berkas/print-qr/19]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berkas_rm`
+WHERE `berkas_rm`.`id` = :berkas_rm.id:', [...], false)
+ 3 SYSTEMPATH\Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(615): CodeIgniter\Model->doFind(true, 19)
+ 5 APPPATH\Controllers\BerkasController.php(270): CodeIgniter\BaseModel->find(19)
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\BerkasController->printQr(19)
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BerkasController))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-10-23 12:04:21 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'trackly_db', 3306, '', 0)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampppp\htdocs\Trackly\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampppp\htdocs\Trackly\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampppp\htdocs\Trackly\app\Controllers\PeminjamanController.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\PeminjamanController->scan()
+#8 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PeminjamanController))
+#9 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampppp\htdocs\Trackly\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampppp\htdocs\Trackly\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampppp\htdocs\Trackly\app\Controllers\PeminjamanController.php(30): CodeIgniter\BaseModel->findAll()
+#6 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\PeminjamanController->scan()
+#7 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PeminjamanController))
+#8 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-10-23 12:04:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: peminjaman/scan]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `units`
+WHERE `is_active` = :is_active:
+ORDER BY `nama_unit` ASC', [...], false)
+ 3 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\PeminjamanController.php(30): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\PeminjamanController->scan()
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PeminjamanController))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-10-23 12:04:52 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'trackly_db', 3306, '', 0)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(2531): CodeIgniter\Database\BaseConnection->query('UPDATE `peminja...', Array, false)
+#4 C:\xampppp\htdocs\Trackly\system\Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampppp\htdocs\Trackly\system\BaseModel.php(1074): CodeIgniter\Model->doUpdate(NULL, Array)
+#6 C:\xampppp\htdocs\Trackly\system\Model.php(711): CodeIgniter\BaseModel->update(NULL, Array)
+#7 C:\xampppp\htdocs\Trackly\app\Models\PeminjamanModel.php(42): CodeIgniter\Model->update()
+#8 C:\xampppp\htdocs\Trackly\app\Controllers\DashboardController.php(32): App\Models\PeminjamanModel->updateOverdueStatus()
+#9 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\DashboardController->index()
+#10 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#11 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#13 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(2531): CodeIgniter\Database\BaseConnection->query('UPDATE `peminja...', Array, false)
+#3 C:\xampppp\htdocs\Trackly\system\Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+#4 C:\xampppp\htdocs\Trackly\system\BaseModel.php(1074): CodeIgniter\Model->doUpdate(NULL, Array)
+#5 C:\xampppp\htdocs\Trackly\system\Model.php(711): CodeIgniter\BaseModel->update(NULL, Array)
+#6 C:\xampppp\htdocs\Trackly\app\Models\PeminjamanModel.php(42): CodeIgniter\Model->update()
+#7 C:\xampppp\htdocs\Trackly\app\Controllers\DashboardController.php(32): App\Models\PeminjamanModel->updateOverdueStatus()
+#8 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\DashboardController->index()
+#9 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#10 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-10-23 12:04:52 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(2531): CodeIgniter\Database\BaseConnection->query('UPDATE `peminjaman` SET `status` = :status.1:, `updated_at` = :updated_at:
+WHERE `status` = :status:
+AND `batas_kembali` < :batas_kembali:', [...], false)
+ 3 SYSTEMPATH\Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+ 4 SYSTEMPATH\BaseModel.php(1074): CodeIgniter\Model->doUpdate(null, [...])
+ 5 SYSTEMPATH\Model.php(711): CodeIgniter\BaseModel->update(null, [...])
+ 6 APPPATH\Models\PeminjamanModel.php(42): CodeIgniter\Model->update()
+ 7 APPPATH\Controllers\DashboardController.php(32): App\Models\PeminjamanModel->updateOverdueStatus()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\DashboardController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-10-23 12:08:26 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'trackly_db', 3306, '', 0)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(2531): CodeIgniter\Database\BaseConnection->query('UPDATE `peminja...', Array, false)
+#4 C:\xampppp\htdocs\Trackly\system\Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampppp\htdocs\Trackly\system\BaseModel.php(1074): CodeIgniter\Model->doUpdate(NULL, Array)
+#6 C:\xampppp\htdocs\Trackly\system\Model.php(711): CodeIgniter\BaseModel->update(NULL, Array)
+#7 C:\xampppp\htdocs\Trackly\app\Models\PeminjamanModel.php(42): CodeIgniter\Model->update()
+#8 C:\xampppp\htdocs\Trackly\app\Controllers\DashboardController.php(32): App\Models\PeminjamanModel->updateOverdueStatus()
+#9 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\DashboardController->index()
+#10 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#11 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#13 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampppp\htdocs\Trackly\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampppp\htdocs\Trackly\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampppp\htdocs\Trackly\system\Database\BaseBuilder.php(2531): CodeIgniter\Database\BaseConnection->query('UPDATE `peminja...', Array, false)
+#3 C:\xampppp\htdocs\Trackly\system\Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+#4 C:\xampppp\htdocs\Trackly\system\BaseModel.php(1074): CodeIgniter\Model->doUpdate(NULL, Array)
+#5 C:\xampppp\htdocs\Trackly\system\Model.php(711): CodeIgniter\BaseModel->update(NULL, Array)
+#6 C:\xampppp\htdocs\Trackly\app\Models\PeminjamanModel.php(42): CodeIgniter\Model->update()
+#7 C:\xampppp\htdocs\Trackly\app\Controllers\DashboardController.php(32): App\Models\PeminjamanModel->updateOverdueStatus()
+#8 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(974): App\Controllers\DashboardController->index()
+#9 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#10 C:\xampppp\htdocs\Trackly\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampppp\htdocs\Trackly\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampppp\htdocs\Trackly\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampppp\htdocs\Trackly\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-10-23 12:08:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(2531): CodeIgniter\Database\BaseConnection->query('UPDATE `peminjaman` SET `status` = :status.1:, `updated_at` = :updated_at:
+WHERE `status` = :status:
+AND `batas_kembali` < :batas_kembali:', [...], false)
+ 3 SYSTEMPATH\Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+ 4 SYSTEMPATH\BaseModel.php(1074): CodeIgniter\Model->doUpdate(null, [...])
+ 5 SYSTEMPATH\Model.php(711): CodeIgniter\BaseModel->update(null, [...])
+ 6 APPPATH\Models\PeminjamanModel.php(42): CodeIgniter\Model->update()
+ 7 APPPATH\Controllers\DashboardController.php(32): App\Models\PeminjamanModel->updateOverdueStatus()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\DashboardController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
